@@ -9,4 +9,9 @@ require_relative './exercise_6'
 puts "Exercise 7"
 puts "----------"
 
-# Your code goes here ...
+store_name_prompt = gets.chomp
+@new_store = Store.create(name: store_name_prompt)
+
+@new_store.errors.full_messages.any? do |error|
+  p error.to_s
+end
