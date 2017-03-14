@@ -5,6 +5,15 @@ class Store < ActiveRecord::Base
   }
   validates :annual_revenue, numericality: {
     only_integer: true,
-    greater_than: 0
+    greater_than_or_equal_to: 0
   }
+
+  before_destroy :employees?
+
+  private
+
+  def employees?
+    throw :abort unless employees.size.zero?
+  end
+
 end
